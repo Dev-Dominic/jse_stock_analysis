@@ -6,13 +6,13 @@ The purpose of this project is to extract the csv files of a given time period f
  
 ```bash
 
-	jse_stock_analysis
-	├── main.py
-	├── scripts
-	│   ├── data_process.py
-	│   ├── data_pull.py
-	│   └── web_scrape.py
-	└── * temp
+jse_stock_analysis
+├── main.py
+├── scripts
+│   ├── data_process.py
+│   ├── data_pull.py
+│   └── web_scrape.py
+└── * temp
 
 ```
 
@@ -22,8 +22,8 @@ This script is where the main method is ran from, on the command line run
 
 ```bash
 
-	$ main.py 'start_date' 'end_date'
-	$ main.py 20-12-2011 20-12-2018
+$ main.py 'start_date' 'end_date'
+$ main.py 20-12-2011 20-12-2018
 
 ```
 
