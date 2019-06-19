@@ -1,6 +1,46 @@
-# Jamaica Stock Exchange Analysis 
+# Jamaica Stock Exchange Analysis v1.0
 
 The purpose of this project is to extract the csv files of a given time period from the JSE website and to make relevant calculations on the data retrieved. Calculations such as the percantage gain on each stock, as well as, the dollar gain on each stock in a given time period. 
+
+
+## Installation and Setup
+
+### Requirements
+1. Python 3
+2. Pip
+
+### Installing pipenv and getting repo
+```bash
+
+$ pip install pipenv 
+$ git clone https://github.com/Dev-Dominic/jse_stock_analysis.git
+
+```
+
+Navigate in terminal/command line to location of project folder
+
+### Setting up pipenv 
+
+Note: Ensure you perform commands in project folder 
+
+```bash
+
+$ pipenv shell
+$ pipenv install --ignore-pipfile
+
+```
+
+This should successfully install all the dependencies for the script
+
+## Closing pipenv virutal environment
+
+```bash
+
+$ exit
+
+```
+
+Close virtual enviroment after finishing use of the script and project
 
 ### jseApp.py
 
@@ -20,5 +60,5 @@ $ jseApp.py 20-12-2011 20-12-2018
 2. Create a temproray folder to house csvfiles
 3. Download all csv files from start date to end state (inclusive)
 4. Store all the stock's data in a list
-5. Perform calculations on each stock's data
+5. Find out the average closing stock price of each security
 6. Presetaton of information that was processed
