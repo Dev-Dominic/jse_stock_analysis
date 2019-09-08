@@ -50,7 +50,7 @@ The command line arguments passed are the start date and end date for which the 
 ```bash
 
 $ jseApp.py 'start_date' 'end_date'
-$ jseApp.py 20-12-2011 20-12-2018
+$ jseApp.py 2011-12-20	2018-12-20 <year-month-day>
 
 ```
 
