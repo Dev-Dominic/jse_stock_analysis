@@ -77,9 +77,9 @@ def pullStockData(st_date, end_date):
     return stock_list 
 
 # Takes a dictionary containing stock name and close prices 
-# Returns a list of tuples with (Stock Tag, Net Chnage)
+# Returns a list of tuples with (Stock Tag, Net Change)
 def processData(stock_list):
-    return [(keys, float("{0:.2f}".format(sum(values)/len(values)))) for keys, values in stock_list.items()]
+    return [(keys,float("{0:.2f}".format(values[-1]-values[0]))) for keys, values in stock_list.items()]
 
 
 # Main
