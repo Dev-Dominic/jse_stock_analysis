@@ -26,7 +26,7 @@ Note: Ensure you perform commands in project folder
 ```bash
 
 $ pipenv shell
-$ pipenv install --ignore-pipfile
+$ pipenv install 
 
 ```
 
@@ -49,8 +49,8 @@ The command line arguments passed are the start date and end date for which the 
 
 ```bash
 
-$ jseApp.py 'start_date' 'end_date'
-$ jseApp.py 2011-12-20	2018-12-20 <year-month-day>
+$ python jseApp.py 'start_date' 'end_date'
+$ python jseApp.py 2011-12-20	2018-12-20 <year-month-day>
 
 ```
 

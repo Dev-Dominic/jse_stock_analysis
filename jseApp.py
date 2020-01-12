@@ -13,6 +13,7 @@ from urllib import request
 import lxml
 import datetime
 from time import sleep
+from statistics import mean
     
 def retrieve_csv_files(st_date, end_date):
     # Creating Temporary directory 'temp' to store csv files
@@ -32,7 +33,7 @@ def retrieve_csv_files(st_date, end_date):
         for i in range(4):
             try:
                 # Making request to JSE market-quote page to junior market index 
-                jse_request = request.urlopen('https://www.jamstockex.com/market-data/junior-market/quote/' + dateStr) 
+                jse_request = request.urlopen('https://www.jamstockex.com/market-data/combined-market/quote/' + dateStr) 
                 soup = BeautifulSoup(jse_request, "lxml") 
                 
                 # CSV donwloads tag 
@@ -78,18 +79,46 @@ def pullStockData(st_date, end_date):
 
 # Takes a dictionary containing stock name and close prices 
 # Returns a list of tuples with (Stock Tag, Net Change)
-def processData(stock_list):
-    return [(keys,float("{0:.2f}".format(values[-1]-values[0]))) for keys, values in stock_list.items()]
+# def processData(stock_list):
+    # return [(keys,float("{0:.2f}".format(values[-1]-values[0]))) for keys, values in stock_list.items()]
 
+# Filters out stocks that had and average stock price less than or equal to filter_price
+def filterStocks(stock_list, filter_price):
+    stockAvg = [(keys, float("{0:.2f}".format(mean(values)))) for keys, values in stock_list.items()]
+    return filter(lambda stock: stock[1] <= filter_price, stockAvg) 
 
-# Main
+# Deletes temp folder and all csv files
+def garbageCollection():
+    os.chdir("temp")
+    
+    # Deleting all files
+    for tempFile in os.listdir():
+        os.remove(tempFile)
+
+    os.chdir("..")
+    os.rmdir("temp")
+
+# TODO Implement proper command-line options 
+"""
+    Main 
+    $ python jseApp.py <start-date> <end-date> <filter-price> 
+
+    Gets a stock based on the average price from <start-date> and <end-date> 
+    were all the stocks with averages that are less than or equal to the filter-price is returned
+
+"""
 if __name__ == "__main__":
     # Retrieves csv files from JSE website
     retrieve_csv_files(sys.argv[1], sys.argv[2])
 
     # Pulls Stock name and Close Prices from csv files and places into stock_list
     stock_list = pullStockData(sys.argv[1], sys.argv[2])
-    stock_info_list = processData(stock_list)
+    # stock_info_list = processData(stock_list)
+
+    filter_price = float(sys.argv[3])
+    stock_info_list = filterStocks(stock_list, filter_price)
 
     for i in stock_info_list:
         print(i)
+
+    garbageCollection()
